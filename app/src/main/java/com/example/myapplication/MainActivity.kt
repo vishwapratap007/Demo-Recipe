@@ -13,8 +13,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -90,6 +92,17 @@ fun RecipeCard(recipe: Recipe) {
                 Text(text = "Ingredients:${recipe.ingredients.joinToString()}")
             }
         }
+    }
+}
+
+@Composable
+fun UserProfileScreen(userId: String, snackbarHostState: SnackbarHostState) {
+    // Re-executes whenever `userId` changes
+    LaunchedEffect(userId) {
+//        val user = repository.getUser(userId)
+//        if (user == null) {
+            snackbarHostState.showSnackbar("User not found!")
+//        }
     }
 }
 
