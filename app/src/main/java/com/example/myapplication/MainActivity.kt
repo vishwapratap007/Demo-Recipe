@@ -55,7 +55,11 @@ fun Greeting(
     when (val state = uiState) {
         is RecipeUIState.Success -> {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(state.recipes) { recipe ->
+                items(
+                    items = state.recipes,
+                    key = { recipe -> recipe.id },
+                    contentType = { "recipe_card" }
+                ) { recipe ->
                     RecipeCard(recipe = recipe)
                 }
             }
